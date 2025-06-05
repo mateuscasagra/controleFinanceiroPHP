@@ -1,7 +1,7 @@
 <?php
-class HomeController extends  Controller{
-    public function Index(){
-        $this->carregarTemplate('home')
+class homeController extends Controller{
+    public function index(){
+        $this->carregarTemplate('home');
     }
 }
 

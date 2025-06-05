@@ -8,10 +8,10 @@ class Controller{
         require 'Views/template.php';
     }
 
-public function carregarViewNoTemplate($nomeView, $dadosModel = array()){
-    extract($dadosModel);
-    require 'Views/' . $nomeView .'.php';
-}
+    public function carregarViewTemplate($nomeView, $dadosModel = array()){
+        extract($dadosModel);
+        require 'Views/' . $nomeView .'.php';
+    }
 
 
 }
