@@ -12,24 +12,22 @@
                         <form method="post" action="" class="user">
                             <div class="form-group row mb-3">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    <input type="text" class="form-control form-control-user" id="exampleFirstName" name="nome"
                                         placeholder="Nome" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName" name="sobrenome"
                                         placeholder="Sobrenome" required>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email " required>
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" placeholder="Email" required>
                             </div>
-                            <div class="form-group row mb-4">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Senha" required>
+                            <div class="form-group mb-4">
+                                <div class=" mb-3 mb-sm-0">
+                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="senha" placeholder="Senha" required>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Senha" required>
-                                </div>
+                               
                             </div>
                             <div class="form-group row mb-3">
                                 <button type="submit" class="btn btn-primary btn-user btn-block fw-bold">Criar conta</button>
