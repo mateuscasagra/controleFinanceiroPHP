@@ -31,19 +31,44 @@ class Usuario
             $insertUsuario->bindParam(':Senha', $senhaHash);
             $resultado = $insertUsuario->execute();
 
-            return $resultado;
+            if ($resultado) {
+                $usuarioId = $this->pdo->lastInsertId();
+                $usuarioObj = new stdClass();
+                $usuarioObj->id = $usuarioId;
+                return $usuarioObj;
+            }
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
 
+
+
     public function verificaEmailCadastrado($email)
     {
         $buscaEmail = $this->pdo->prepare('SELECT * FROM usuario WHERE Email = :email');
-        $buscaEmail->bindParam(':Email', $email);
+        $buscaEmail->bindParam(':email', $email);
         $buscaEmail->execute();
         $resultado = $buscaEmail->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }
+
+    public function fazerLogin($param)
+    {
+        extract($param);
+
+        $buscaUsuario = $this->pdo->prepare("SELECT Id, Email, Senha_Hash FROM usuario WHERE Email = :email");
+        $buscaUsuario->bindParam(':email', $email);
+        $buscaUsuario->execute();
+        $usuario = $buscaUsuario->fetch(PDO::FETCH_ASSOC);
+    
+        
+        if ($usuario && password_verify($senha, $usuario['Senha_Hash'])) {
+            return $usuario['Id'];
+        }
+
+        return false;
+    }
+
 }

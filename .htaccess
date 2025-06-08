@@ -1,4 +1,6 @@
 RewriteEngine On
+RewriteBase /controleFinanceiroPHP/
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /controleFinanceiroPHP/index.php?pag=$1
+RewriteRule ^(.*)$ index.php?pag=$1 [QSA,L]

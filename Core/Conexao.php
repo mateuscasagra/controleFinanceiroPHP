@@ -1,6 +1,4 @@
 <?php
-use Exception;
-use PDO;
 
 
 class Conexao{
@@ -17,7 +15,7 @@ class Conexao{
         $senha = '';
 
         try {
-            self::$conn = new PDO('mysql:dbname='.$dbName.'host='.$host,$user,$senha);
+            self::$conn = new PDO('mysql:dbname='.$dbName.';host='.$host,$user,$senha);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

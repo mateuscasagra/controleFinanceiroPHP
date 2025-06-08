@@ -8,12 +8,22 @@ class cadastroController extends Controller{
     }
 
 
-    public function cadastro(array $param){
+    public function cadastro(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $novoUsuario = new Usuario();
-        if($novoUsuario->Cadastrar($param)){
-            $this->carregarTemplate('home');
+        $id = $novoUsuario->Cadastrar($_POST);
+        $_SESSION['usuario_id'] = $id;
+        if(!empty($id)){  
+            header('location: ?pag=planos');
+            exit;
+        }
         }
     }
+
+
+
+
+    
 
 
 

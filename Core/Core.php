@@ -35,7 +35,7 @@ class Core
 
             }
 
-            $caminho = 'Trabalho/Controllers' . $controller . '.php'; // talvez de erro pq faltou uma barra
+            $caminho = 'controleFinanceiroPHP/Controllers' . $controller . '.php'; 
 
             if (!file_exists($caminho) && !method_exists($controller, $metodo)) {
                 $controller = 'homeController';
