@@ -6,6 +6,9 @@ class planosController extends Controller
 
     public function index()
     {
+        if(!isset($_SESSION['usuario_id'])){
+            header('location: ?pag=login');
+        }
 
         $planos = new Planos();
         $planosRetorno = $planos->getPlanos();
@@ -22,7 +25,6 @@ class planosController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $idUsuario = $_SESSION['usuario_id']->id;
-        
             $usuario = new Planos();
             $usuario->escolhaPlano($idUsuario, $_POST['planoId']);
             header('location: ?pag=dashboard');

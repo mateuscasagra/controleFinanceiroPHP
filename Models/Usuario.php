@@ -33,9 +33,7 @@ class Usuario
 
             if ($resultado) {
                 $usuarioId = $this->pdo->lastInsertId();
-                $usuarioObj = new stdClass();
-                $usuarioObj->id = $usuarioId;
-                return $usuarioObj;
+                return $usuarioId;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();

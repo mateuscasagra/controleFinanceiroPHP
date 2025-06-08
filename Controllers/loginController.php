@@ -11,9 +11,10 @@ class LoginController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginUsuario = new Usuario();
-            $id = $loginUsuario->fazerLogin($_POST);
-            $_SESSION['usuario_id'] = $id;
-            if (!empty($id)) {
+            $retorno = $loginUsuario->fazerLogin($_POST);
+            
+            if (!empty($retorno)) {
+                $_SESSION['usuario_id'] = $retorno;
                 header('location: ?pag=dashboard');
                 exit;
             }

@@ -19,7 +19,8 @@ class Planos{
     public function escolhaPlano($idUsuario, $idPlano)
     {
         try {
-            $updateQuery = $this->pdo->prepare("UPDATE usuario SET idPlano = :idPlano WHERE Id = :id");
+
+            $updateQuery = $this->pdo->prepare("UPDATE usuario SET idPlano = :idPlano WHERE Id = :id AND IdPlano IS NULL");
             $updateQuery->bindParam(":idPlano", $idPlano);
             $updateQuery->bindParam(":id", $idUsuario);
             $updateQuery->execute();

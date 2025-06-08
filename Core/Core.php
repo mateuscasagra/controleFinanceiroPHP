@@ -9,6 +9,8 @@ class Core
 
     public function run()
     {
+        
+
         if (isset($_GET['pag'])) {
             $url = $_GET['pag'];
 
@@ -35,7 +37,7 @@ class Core
 
             }
 
-            $caminho = 'controleFinanceiroPHP/Controllers' . $controller . '.php'; 
+            $caminho = 'controleFinanceiroPHP/Controllers' . $controller . '.php';
 
             if (!file_exists($caminho) && !method_exists($controller, $metodo)) {
                 $controller = 'homeController';
@@ -50,5 +52,3 @@ class Core
 }
 
 ?>
-
-

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid min-vh-100">
     <div class="row">
         <?php $this->carregarTemplate('Sidebar') ?>
         <div class="col d-flex flex-column">
@@ -65,16 +65,16 @@
                 </div>
             </div>
 
-            <div class="container-fluid mt-4 mb-4 d-block flex-grow-1">
+            <div class="container-fluid mt-4 mb-4 d-block flex-grow-1" >
 
-                <div class="card shadow h-100">
+                <div class="card shadow h-100" >
                     <div class="card-header py-3">
                         <h6 class="m-0 fw-bold text-black">Movimentação</h6>
                     </div>
 
                     <div class="card-body d-flex flex-column">
 
-                        <div class="table-responsive flex-grow-1 overflow-auto">
+                        <div class="table-responsive flex-grow-1 overflow-auto"  >
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -86,8 +86,8 @@
                                                     <th style="width: 200px;">Onde</th>
                                                     <th style="width: 100px;">Data</th>
                                                     <th style="width: 100px;">Pagamento</th>
+                                                    <th style="width: 100px;">Categoria</th>    
                                                     <th style="width: 100px;">Direção</th>
-                                                    <th style="width: 100px;">Categoria</th>
                                                     <th style="width:100px;">Ações</th>
                                                 </tr>
                                             </thead>
@@ -100,6 +100,7 @@
                                                         <td><?= $m['Onde'] ?></td>
                                                         <td><?= $m['Quando'] ?></td>
                                                         <td><?= $m['Tipo_Pagamento'] ?></td>
+                                                        <td><?= $m['Categoria']?></td>
                                                         <td><?= $m['Direcao'] ?></td>
                                                         <td>
                                                             <div class="d-flex justify-content-center">

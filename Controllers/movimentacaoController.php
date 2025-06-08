@@ -2,9 +2,12 @@
 
 class MovimentacaoController extends Controller{
     public function index(){
+        if(!isset($_SESSION['usuario_id'])){
+            header('location: ?pag=login');
+        }
         $id = $_SESSION['usuario_id'];
         $carrega = new Movimentacao();
-        $dados = $carrega->carregaDados($id->id);
+        $dados = $carrega->carregaDadosMovimentacao($id);
         $movimento = $dados['movimento'];
         $tipoPagamentos = $dados['tipoPagamento'];
         $categorias = $dados['categorias'];
@@ -18,7 +21,7 @@ class MovimentacaoController extends Controller{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lanca = new Movimentacao();
             $id = $_SESSION['usuario_id'];
-            $envia = $lanca->lancarMovimentacao($_POST, $id->id);
+            $envia = $lanca->lancarMovimentacao($_POST, $id);
             if($envia){
                 header('location: ?pag=movimentacao');
             }

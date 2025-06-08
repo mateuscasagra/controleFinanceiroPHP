@@ -4,6 +4,7 @@
         <div class="col">
 
             <div class="row d-flex justify-content-center mt-5">
+
                 <div class="col-md-4">
                     <div class="card shadow h-100 py-2">
                         <div class="card-body">
@@ -11,7 +12,8 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Saldo</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        $<?= number_format($Totais->saldo, 2, ',', '.') ?></div>
 
                                 </div>
                                 <div class="col-auto"><i class="fa-solid fa-sack-dollar fa-2x"></i></div>
@@ -27,7 +29,8 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Total ganho</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        $<?= number_format($Totais->totalEntrada, 2, ',', '.') ?></div>
 
                                 </div>
                                 <div class="col-auto"><i class="fa-solid fa-arrow-up fa-2x"></i></div>
@@ -43,7 +46,8 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Total gasto</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        $<?= number_format($Totais->totalSaida, 2, ',', '.') ?></div>
 
                                 </div>
                                 <div class="col-auto"><i class="fa-solid fa-arrow-down fa-2x"></i></div>
@@ -52,6 +56,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="row mt-5">
                 <div class="col-xl-8 col-lg-7">
@@ -82,11 +87,11 @@
 
                 <div class="col-xl-4 col-lg-5">
                     <div class="card shadow mb-4">
-        
+
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
                         </div>
-            
+
                         <div class="card-body">
                             <div class="chart-pie pt-4 pb-2">
                                 <div class="chartjs-size-monitor">
@@ -121,25 +126,27 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-
+        const dataEntradas = <?= json_encode($totaisMesEntrada) ?>;
+        const dataSaidas = <?= json_encode($totaisMesSaida) ?>;
+        const meses = <?= json_encode($meses) ?>;
         const ctxArea = document.getElementById('myAreaChart');
         new Chart(ctxArea, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                labels: meses,
                 datasets: [{
-                    label: 'Ganhos',
-                    data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+                    label: 'Entrada',
+                    data: dataEntradas,
                     backgroundColor: 'rgba(78, 115, 223, 0.05)',
                     borderColor: 'rgba(78, 115, 223, 1)',
-                    tension: 0.3, 
+                    tension: 0.3,
                     fill: true
-                },{
-                    label: 'Gastos',
-                    data: [0, 10000, 5000, 153, 101, 200.50, 15000, 500, 200, 30000, 3000, 400],
+                }, {
+                    label: 'Saída',
+                    data: dataSaidas,
                     backgroundColor: 'rgba(78, 115, 223, 0.05)',
                     borderColor: 'rgb(223, 78, 78)',
-                    tension: 0.3, 
+                    tension: 0.3,
                     fill: true
                 }]
             },
@@ -154,19 +161,19 @@
             }
         });
 
-      
+
         const ctxPie = document.getElementById('myPieChart');
         new Chart(ctxPie, {
-            type: 'doughnut', 
+            type: 'doughnut',
             data: {
                 labels: ['Direto', 'Social', 'Referência'],
                 datasets: [{
                     label: 'Fontes',
                     data: [55, 30, 15],
                     backgroundColor: [
-                        '#4e73df', 
+                        '#4e73df',
                         '#1cc88a',
-                        '#36b9cc' 
+                        '#36b9cc'
                     ],
                     hoverOffset: 4
                 }]

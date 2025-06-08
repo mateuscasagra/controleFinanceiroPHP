@@ -24,7 +24,7 @@
    
 </head>
 
-<body style="min-vh-100; background: linear-gradient(135deg, #6a11cb, #2575fc);">
+<body class="min-vh-100" style=" background: linear-gradient(135deg, #6a11cb, #2575fc);">
 
     <?php
 
