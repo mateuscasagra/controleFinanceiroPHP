@@ -4,13 +4,16 @@ class categoriaController extends Controller
 {
     public function index()
     {
-        $id = $_SESSION['usuario_id'];
-        $carrega = new Categoria();
-        $envia = $carrega->carregaCategorias($id);
-        $this->carregarTemplate('Categoria', ['categorias' => $envia]);
+        if (!isset($_SESSION['usuario_id'])) {
+            header('location: ?pag=login');
+        }
+            $id = $_SESSION['usuario_id'];
+            $carrega = new Categoria();
+            $envia = $carrega->carregaCategorias($id);
+            $this->carregarTemplate('Categoria', ['categorias' => $envia]);
+        
+
     }
-
-
     public function adicionaCategoria()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,7 +46,7 @@ class categoriaController extends Controller
             $id = $_SESSION['usuario_id'];
             $editaCategoria = new Categoria();
             $envia = $editaCategoria->editaCategoria($_POST, $id);
-            if($envia){
+            if ($envia) {
                 header('location: ?pag=categoria');
             }
         }

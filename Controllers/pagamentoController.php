@@ -3,10 +3,14 @@
 
 class pagamentoController extends Controller{
     public function index(){
+     if (!isset($_SESSION['usuario_id'])) {
+            header('location: ?pag=login');
+        }
         $id = $_SESSION['usuario_id'];
         $carrega = new Pagamento();
         $envia = $carrega->carregaPagamentos( $id );
         $this->carregarTemplate('Pagamentos', ['pagamentos' => $envia ] );
+        
     }
 
     public function adicionaPagamento(){
