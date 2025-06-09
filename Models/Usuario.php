@@ -66,7 +66,7 @@ class Usuario
             return $usuario['Id'];
         }
 
-        return false;
+        echo "Usuario ou senha invalidos";
     }
 
 }
