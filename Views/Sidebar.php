@@ -25,7 +25,7 @@
             </form>
         </li>
         <li class="nav-item">
-            <form action="/controleFinanceiroPHP/home" method="post">
+            <form action="/controleFinanceiroPHP/home/sair" method="post">
                 <button class="nav-link text-white ">
                     <i class="fa-solid fa-right-from-bracket me-2"></i>
                     <span class="d-none d-sm-inline">Sair</span>

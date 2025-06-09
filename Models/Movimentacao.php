@@ -31,7 +31,8 @@ class Movimentacao
         return [
             'movimento' => $retornoMovimento,
             'tipoPagamento' => $retornoTipoPagamento,
-            'categorias' => $retornoCategoria
+            'categorias' => $retornoCategoria,
+          
         ];
     }
 
@@ -57,15 +58,17 @@ class Movimentacao
 
     public function carregarDadosDashboard($id)
     {
-        $selectValoresCategoria = $this->pdo->prepare('SELECT c.Nome as Categoria, 
-                                                             SUM(CASE WHEN m.Valor > 0 THEN m.Valor ELSE 0 END) AS totalEntradaCategoria, 
-                                                             SUM(CASE WHEN m.Valor < 0 THEN m.Valor ELSE 0 END) AS totalSaidaCategoria, 
-                                                             SUM(m.Valor) AS saldoCategoria 
-                                                             FROM movimentacao m 
-                                                             LEFT JOIN categorias c 
-                                                             ON m.IdCategoria = c.Id 
-                                                             WHERE IdUsuario = :id 
-                                                             GROUP BY c.Nome;');
+        $selectValoresCategoria = $this->pdo->prepare('SELECT 
+                                                                c.Nome AS Categoria, 
+                                                                SUM(CASE WHEN m.Valor > 0 THEN m.Valor ELSE 0 END) AS totalEntradaCategoria, 
+                                                                SUM(CASE WHEN m.Valor < 0 THEN m.Valor ELSE 0 END) AS totalSaidaCategoria, 
+                                                                SUM(m.Valor) AS saldoCategoria 
+                                                                FROM movimentacao m 
+                                                                LEFT JOIN categorias c ON m.IdCategoria = c.Id 
+                                                                WHERE m.IdUsuario = :id
+                                                                GROUP BY c.Nome
+                                                                HAVING totalSaidaCategoria < 0;
+');
         $selectValoresCategoria->bindParam(':id', $id);
         $selectValoresCategoria->execute();
         $dadosCategorias = $selectValoresCategoria->fetchAll(PDO::FETCH_OBJ);
@@ -95,5 +98,34 @@ class Movimentacao
             'totais' => $dadosTotais,
             'totaisMes' => $dadosTotaisMes
         ];
+    }
+
+
+    public function apagarMovimentacao($idMovimentacao, $idUsuario){
+        $deleteMovimentacao = $this->pdo->prepare('DELETE FROM movimentacao WHERE Id = :idMovimentacao AND IdUsuario = :idUsuario');
+        $deleteMovimentacao->bindParam(':idMovimentacao', $idMovimentacao);
+        $deleteMovimentacao->bindParam(':idUsuario', $idUsuario);
+        $retorno = $deleteMovimentacao->execute();
+        return $retorno;
+
+
+    }
+
+
+    public function editaMovimentacao($param, $idUsuario, $direcao){
+        extract($param);
+        $updateMovimentacao = $this->pdo->prepare('UPDATE movimentacao SET Valor = :valor, Onde = :onde, Quando = :quando, Direcao = :direcao, IdTipo_Pagamento = :idpagamento, IdCategoria = :idcategoria WHERE Id = :idMovimentacao AND IdUsuario = :idUsuario');
+        $updateMovimentacao->bindParam(':valor', $Valor);
+        $updateMovimentacao->bindParam(':onde', $Onde);
+        $updateMovimentacao->bindParam(':quando', $Quando);
+        $updateMovimentacao->bindParam(':direcao', $direcao);
+        $updateMovimentacao->bindParam(':idpagamento', $IdTipoPagamento);
+        $updateMovimentacao->bindParam(':idcategoria', $Categoria);
+        $updateMovimentacao->bindParam(':idMovimentacao', $Id);
+        $updateMovimentacao->bindParam(':idUsuario', $idUsuario);
+        $retorno = $updateMovimentacao->execute();
+        return $retorno;    
+
+
     }
 }
