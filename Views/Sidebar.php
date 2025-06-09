@@ -2,7 +2,7 @@
     <div class="pt-4 pb-1 px-2">
         <a href="" class="text-white text-decoration-none">
             <i class="fa-solid fs-2 fa-coins me-2"></i>
-            <span class="fs-4 d-none d-sm-inline">Controle Financeiro</span>
+            <span class="fs-4 d-none d-sm-inline">Finance</span>
         </a>
     </div>
     <hr class="text-white">
