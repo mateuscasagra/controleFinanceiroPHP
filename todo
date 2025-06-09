@@ -1,8 +1,10 @@
 
-Tela Movimentacao: Remove, edita
-Tela Dashboard: Mostra dados
-Botao sair: destroy session
-Mostra dashboard, movimentasao: se estiver logado 
-Tela Not Found: rota nao encontrada
-Pop up Erros: email ja cadastrado
-Pagina Inicial: trabalhoPHP
+
+
+
+CRFS 7
+Pop up Erros 5
+Ordenar tabela movimentacao por Data
+Recuperar senha 8
+CRUD Categoria & Forma de pagamento 9 
+Planos 6

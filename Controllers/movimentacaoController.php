@@ -1,6 +1,6 @@
 <?php
 
-class MovimentacaoController extends Controller
+class movimentacaoController extends Controller
 {
     public function index()
     {

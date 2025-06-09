@@ -24,9 +24,9 @@ class planosController extends Controller
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $idUsuario = $_SESSION['usuario_id']->id;
+            $id = $_SESSION[''];
             $usuario = new Planos();
-            $usuario->escolhaPlano($idUsuario, $_POST['planoId']);
+            $usuario->escolhaPlano($id, $_POST['planoId']);
             header('location: ?pag=dashboard');
 
         }

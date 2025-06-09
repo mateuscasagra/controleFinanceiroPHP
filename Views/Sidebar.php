@@ -25,6 +25,22 @@
             </form>
         </li>
         <li class="nav-item">
+            <form action="/controleFinanceiroPHP/categoria" method="post">
+                <button class="nav-link text-white ">
+                    <i class="fa-solid fa-layer-group me-2"></i>
+                    <span class="d-none d-sm-inline">Categorias</span>
+                </button>
+            </form>
+        </li>
+        <li class="nav-item">
+            <form action="/controleFinanceiroPHP/pagamento" method="post">
+                <button class="nav-link text-white ">
+                    <i class="fa-solid fa-money-check-dollar me-2"></i>
+                    <span class="d-none d-sm-inline">Formas de pagemento</span>
+                </button>
+            </form>
+        </li>
+        <li class="nav-item">
             <form action="/controleFinanceiroPHP/home/sair" method="post">
                 <button class="nav-link text-white ">
                     <i class="fa-solid fa-right-from-bracket me-2"></i>

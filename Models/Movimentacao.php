@@ -18,7 +18,7 @@ class Movimentacao
                                                        ON m.IdTipo_Pagamento = t.Id
                                                        LEFT JOIN categorias c
                                                        ON m.IdCategoria = c.Id
-                                                       WHERE IdUsuario = :id");
+                                                       WHERE m.IdUsuario = :id");
         $selectMovimento->bindParam(":id", $id);
         $selectMovimento->execute();
         $retornoMovimento = $selectMovimento->fetchAll(PDO::FETCH_ASSOC);
@@ -127,5 +127,16 @@ class Movimentacao
         return $retorno;    
 
 
+    }
+
+    public function verificaPlano($id){
+        $selectPlano = $this->pdo->prepare('SELECT (SELECT COUNT(*) FROM movimentacao m WHERE m.IdUsuario = u.Id) AS total, 
+                                                    pe.Limite_Lancamento 
+                                                    FROM usuario u 
+                                                    LEFT JOIN planos p 
+                                                    ON p.Id = u.IdPlano 
+                                                    LEFT JOIN permissoes pe 
+                                                    ON pe.Id = p.PermissaoId 
+                                                    WHERE u.Id = 38;');
     }
 }

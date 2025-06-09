@@ -1,6 +1,6 @@
 <?php
 
-class DashboardController extends Controller{
+class dashboardController extends Controller{
     public function index(){
         if(!isset($_SESSION['usuario_id'])){
             header('location: ?pag=login');

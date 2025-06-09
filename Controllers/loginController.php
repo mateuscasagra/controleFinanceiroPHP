@@ -1,10 +1,14 @@
 <?php
 
-class LoginController extends Controller
+class loginController extends Controller
 {
     public function index()
     {
-        $this->carregarTemplate('Login');
+        if (isset($_SESSION['usuario_id'])) {
+            header('location: dashboard');
+        } else {
+            $this->carregarTemplate('Login');
+        }
     }
 
     public function login()
@@ -12,7 +16,7 @@ class LoginController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $loginUsuario = new Usuario();
             $retorno = $loginUsuario->fazerLogin($_POST);
-            
+
             if (!empty($retorno)) {
                 $_SESSION['usuario_id'] = $retorno;
                 header('location: ?pag=dashboard');
